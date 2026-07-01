@@ -1,0 +1,10 @@
+@media (max-width: 640px) {
+  table {
+    font-size: 0.8rem;
+  }
+
+  td, th {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}

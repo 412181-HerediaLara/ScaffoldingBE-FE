@@ -1,0 +1,51 @@
+<div class="min-h-screen bg-gray-100">
+  <header class="bg-white shadow-sm border-b border-gray-200 fixed top-0 left-0 right-0 z-30 h-16">
+    <div class="flex items-center justify-between px-4 h-full">
+      <div class="flex items-center gap-3">
+        <button class="lg:hidden p-2 rounded-md hover:bg-gray-100" (click)="toggleSidebar()">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+        <span class="text-xl font-semibold text-gray-900">Mi App</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="text-right">
+          <p class="text-sm font-medium text-gray-900">{{ auth.email() }}</p>
+          <p class="text-xs text-gray-500">{{ auth.role() | roleLabel }}</p>
+        </div>
+        <button class="px-3 py-1.5 text-sm bg-red-500 text-white rounded hover:bg-red-600" (click)="logout()">
+          Salir
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <aside class="fixed top-16 left-0 bottom-0 w-64 bg-white border-r border-gray-200 z-20 transition-transform duration-200 -translate-x-full lg:translate-x-0"
+         [class.-translate-x-full]="!sidebarOpen()"
+         [class.translate-x-0]="sidebarOpen()">
+    <nav class="p-4 space-y-1">
+      <a routerLink="/dashboard" routerLinkActive="bg-blue-50 text-blue-700" class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+        Dashboard
+      </a>
+      <a routerLink="/dummies" routerLinkActive="bg-blue-50 text-blue-700" class="flex items-center gap-3 px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+        </svg>
+        Dummies
+      </a>
+    </nav>
+  </aside>
+
+  <div class="fixed inset-0 bg-black/50 z-10 lg:hidden"
+       [class.hidden]="!sidebarOpen()"
+       (click)="sidebarOpen.set(false)">
+  </div>
+
+  <main class="pt-16 lg:ml-64 min-h-screen p-6">
+    <router-outlet />
+  </main>
+</div>

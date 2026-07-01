@@ -1,0 +1,6 @@
+@media (max-width: 640px) {
+  .max-w-lg {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
